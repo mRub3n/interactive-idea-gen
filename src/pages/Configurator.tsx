@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ShoppingCart, Check } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { products, materials, colorOptions, calculatePrice } from "@/data/products";
 import { useCart, CartItem } from "@/context/CartContext";
 import { Button } from "@/components/ui/button";
@@ -19,13 +19,12 @@ const Configurator = () => {
   const { addItem } = useCart();
 
   const product = products.find((p) => p.id === productId);
-
   const isLetterProduct = product?.category === "ornate-letters";
 
   const [selectedLetter, setSelectedLetter] = useState("A");
   const [color, setColor] = useState(() => {
     const colorNode = product?.editableNodes.find((n) => n.type === "color");
-    return (colorNode?.defaultValue as string) || "#00e5ff";
+    return (colorNode?.defaultValue as string) || "#D4A373";
   });
   const [materialId, setMaterialId] = useState("matte");
   const [labelText, setLabelText] = useState(() => {
@@ -67,7 +66,6 @@ const Configurator = () => {
     navigate("/cart");
   };
 
-  // Build dynamic controls from editableNodes
   const renderNodeControls = () =>
     product.editableNodes.map((node) => {
       switch (node.type) {
@@ -80,11 +78,11 @@ const Configurator = () => {
                   <button
                     key={c}
                     onClick={() => setColor(c)}
-                    className="w-8 h-8 rounded-full border-2 transition-all duration-200 hover:scale-110"
+                    className="w-8 h-8 rounded-full border-2 transition-all duration-300 hover:scale-110"
                     style={{
                       backgroundColor: c,
-                      borderColor: color === c ? "hsl(187 100% 50%)" : "transparent",
-                      boxShadow: color === c ? `0 0 12px ${c}` : "none",
+                      borderColor: color === c ? "hsl(15, 60%, 55%)" : "transparent",
+                      boxShadow: color === c ? `0 0 12px ${c}44` : "none",
                     }}
                   />
                 ))}
@@ -98,8 +96,8 @@ const Configurator = () => {
               <Input
                 value={labelText}
                 onChange={(e) => setLabelText(e.target.value)}
-                placeholder="Enter text..."
-                className="bg-muted/50 border-border/50"
+                placeholder="Enter engraving text..."
+                className="bg-muted/50 border-border/50 rounded-xl"
                 maxLength={20}
               />
             </div>
@@ -130,20 +128,20 @@ const Configurator = () => {
         />
       </div>
 
-      {/* Control Lab Sidebar — 30% */}
+      {/* Studio Panel — 30% */}
       <motion.aside
         initial={{ x: 40, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
         className="lg:w-[30%] lg:min-w-[360px] glass-strong lg:h-[calc(100vh-4rem)] overflow-y-auto flex flex-col"
       >
         <div className="p-6 flex-1 space-y-8">
           <div>
-            <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Control Lab</p>
-            <h2 className="font-display text-2xl font-bold">{product.name}</h2>
+            <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Artisan Studio</p>
+            <h2 className="font-display text-2xl">{product.name}</h2>
           </div>
 
-          {/* Section A — Letter Selection (only for letter products) */}
+          {/* Letter Selection */}
           {isLetterProduct && (
             <div className="space-y-3">
               <Label className="text-xs text-muted-foreground uppercase tracking-wider">Select Letter</Label>
@@ -152,9 +150,9 @@ const Configurator = () => {
                   <button
                     key={l}
                     onClick={() => setSelectedLetter(l)}
-                    className={`h-8 rounded-md text-xs font-bold transition-all duration-200 ${
+                    className={`h-8 rounded-xl text-xs font-bold transition-all duration-300 ${
                       selectedLetter === l
-                        ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30"
+                        ? "bg-accent text-accent-foreground shadow-md shadow-accent/20"
                         : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground"
                     }`}
                   >
@@ -165,7 +163,7 @@ const Configurator = () => {
             </div>
           )}
 
-          {/* Dynamic controls from editableNodes */}
+          {/* Dynamic controls */}
           {renderNodeControls()}
 
           {/* Material */}
@@ -176,10 +174,10 @@ const Configurator = () => {
                 <button
                   key={m.id}
                   onClick={() => setMaterialId(m.id)}
-                  className={`flex-1 py-2.5 rounded-lg text-xs font-semibold transition-all duration-200 ${
+                  className={`flex-1 py-2.5 rounded-xl text-xs font-medium border transition-all duration-300 ${
                     materialId === m.id
-                      ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
-                      : "bg-muted/50 text-muted-foreground hover:bg-muted"
+                      ? "bg-accent text-accent-foreground border-accent shadow-md shadow-accent/15"
+                      : "bg-transparent text-muted-foreground border-border hover:border-accent/40 hover:text-foreground"
                   }`}
                 >
                   {m.name}
@@ -192,19 +190,19 @@ const Configurator = () => {
           <div className="space-y-3">
             <div className="flex justify-between items-center">
               <Label className="text-xs text-muted-foreground uppercase tracking-wider">Dimensions</Label>
-              <span className="text-sm font-mono text-primary">{size} cm</span>
+              <span className="text-sm font-mono text-accent">{size} cm</span>
             </div>
             <Slider value={[size]} onValueChange={([v]) => setSize(v)} min={10} max={50} step={1} />
           </div>
         </div>
 
         {/* Pricing Footer */}
-        <div className="p-6 border-t border-border/50 bg-muted/30">
+        <div className="p-6 border-t border-border/50 bg-muted/20">
           <div className="flex items-center justify-between mb-4">
             <span className="text-sm text-muted-foreground">Total</span>
-            <span className="font-display text-3xl font-bold text-primary">${price}</span>
+            <span className="font-display text-3xl text-accent">${price}</span>
           </div>
-          <Button onClick={handleAddToCart} size="lg" className="w-full rounded-full gap-2 font-semibold text-base">
+          <Button onClick={handleAddToCart} size="lg" className="w-full rounded-full gap-2 font-medium text-base bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg shadow-accent/20">
             <ShoppingCart className="h-4 w-4" /> Add to Cart
           </Button>
         </div>
