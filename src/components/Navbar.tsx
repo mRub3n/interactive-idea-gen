@@ -23,8 +23,8 @@ const Navbar = () => {
         </Link>
 
         <div className="flex items-center gap-8">
-          <Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 flex items-center gap-1">
-            <Home className="h-4 w-4" /> Home
+          <Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300">
+            Home
           </Link>
           <Link to="/gallery" className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300">
             Categories
