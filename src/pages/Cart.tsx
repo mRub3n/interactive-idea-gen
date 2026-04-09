@@ -21,7 +21,7 @@ const Cart = () => {
 
   return (
     <div className="min-h-screen pt-24 px-6 max-w-3xl mx-auto pb-20">
-      <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="font-display text-4xl font-bold mb-10">
+      <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="font-display text-4xl mb-10">
         Your Cart
       </motion.h1>
 
@@ -31,23 +31,23 @@ const Cart = () => {
             key={item.id}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: i * 0.05 }}
-            className="glass rounded-xl p-5 flex items-center justify-between"
+            transition={{ delay: i * 0.08, duration: 0.5 }}
+            className="glass rounded-2xl p-5 flex items-center justify-between"
           >
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: item.color + "22" }}>
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: item.color + "22" }}>
                 <div className="w-6 h-6 rounded-full" style={{ backgroundColor: item.color }} />
               </div>
               <div>
-                <p className="font-display font-semibold">{item.productName}</p>
+                <p className="font-display">{item.productName}</p>
                 <p className="text-xs text-muted-foreground">
                   {item.material} · {item.size}cm{item.label ? ` · "${item.label}"` : ""}
                 </p>
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <span className="font-display font-bold text-primary">${item.price}</span>
-              <button onClick={() => removeItem(item.id)} className="text-muted-foreground hover:text-destructive transition-colors">
+              <span className="font-display text-accent">${item.price}</span>
+              <button onClick={() => removeItem(item.id)} className="text-muted-foreground hover:text-destructive transition-colors duration-300">
                 <Trash2 className="h-4 w-4" />
               </button>
             </div>
@@ -55,12 +55,12 @@ const Cart = () => {
         ))}
       </div>
 
-      <div className="glass rounded-xl p-6">
+      <div className="glass rounded-2xl p-6">
         <div className="flex justify-between items-center mb-6">
           <span className="text-muted-foreground">Total</span>
-          <span className="font-display text-3xl font-bold text-primary">${totalPrice}</span>
+          <span className="font-display text-3xl text-accent">${totalPrice}</span>
         </div>
-        <Button size="lg" className="w-full rounded-full font-semibold text-base">
+        <Button size="lg" className="w-full rounded-full font-medium text-base bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg shadow-accent/20">
           Proceed to Checkout
         </Button>
       </div>

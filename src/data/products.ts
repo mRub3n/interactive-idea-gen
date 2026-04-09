@@ -27,14 +27,14 @@ export interface Material {
 }
 
 export const materials: Material[] = [
-  { id: "matte", name: "Matte", priceMultiplier: 1.0, color: "#888888" },
-  { id: "silk", name: "Silk", priceMultiplier: 1.3, color: "#c0b0d0" },
-  { id: "neon", name: "Neon", priceMultiplier: 1.6, color: "#00ffcc" },
+  { id: "matte", name: "Matte Linen", priceMultiplier: 1.0, color: "#C8B8A6" },
+  { id: "silk", name: "Silk Terracotta", priceMultiplier: 1.3, color: "#C4754B" },
+  { id: "neon", name: "Linen Apricot", priceMultiplier: 1.6, color: "#FFB997" },
 ];
 
 export const colorOptions = [
-  "#00e5ff", "#ff006e", "#ffbe0b", "#8338ec", "#3a86ff",
-  "#06d6a0", "#ef476f", "#ffd166", "#ffffff", "#1a1a2e",
+  "#FFB997", "#C4754B", "#8B6F5A", "#A3B18A", "#DAD7CD",
+  "#D4A373", "#E9C46A", "#F4A261", "#264653", "#FEFCF5",
 ];
 
 export const products: Product[] = [
@@ -47,9 +47,9 @@ export const products: Product[] = [
     image: "/placeholder.svg",
     description: "A bold, ornate letter A for shelf or wall display.",
     editableNodes: [
-      { name: "body_color", label: "Body Color", type: "color", defaultValue: "#00e5ff", options: colorOptions.map(String) },
-      { name: "label_text", label: "Custom Label", type: "text", defaultValue: "MOMENTO" },
-      { name: "glow", label: "LED Glow", type: "toggle", defaultValue: true },
+      { name: "body_color", label: "Body Color", type: "color", defaultValue: "#D4A373", options: colorOptions.map(String) },
+      { name: "label_text", label: "Custom Engraving", type: "text", defaultValue: "MOMENTO" },
+      { name: "glow", label: "Warm Glow", type: "toggle", defaultValue: true },
     ],
   },
   {
@@ -61,9 +61,9 @@ export const products: Product[] = [
     image: "/placeholder.svg",
     description: "Elegant letter B with detailed ornamental surface.",
     editableNodes: [
-      { name: "body_color", label: "Body Color", type: "color", defaultValue: "#ff006e" },
-      { name: "label_text", label: "Custom Label", type: "text", defaultValue: "MOMENTO" },
-      { name: "glow", label: "LED Glow", type: "toggle", defaultValue: false },
+      { name: "body_color", label: "Body Color", type: "color", defaultValue: "#C4754B" },
+      { name: "label_text", label: "Custom Engraving", type: "text", defaultValue: "MOMENTO" },
+      { name: "glow", label: "Warm Glow", type: "toggle", defaultValue: false },
     ],
   },
   {
@@ -75,7 +75,7 @@ export const products: Product[] = [
     image: "/placeholder.svg",
     description: "Custom 3D car emblem for dashboards or keychains.",
     editableNodes: [
-      { name: "body_color", label: "Main Color", type: "color", defaultValue: "#3a86ff" },
+      { name: "body_color", label: "Main Color", type: "color", defaultValue: "#8B6F5A" },
       { name: "label_text", label: "Text Engraving", type: "text", defaultValue: "TURBO" },
     ],
   },
@@ -88,8 +88,8 @@ export const products: Product[] = [
     image: "/placeholder.svg",
     description: "Ergonomic 3D-printed gear shift knob with custom grip.",
     editableNodes: [
-      { name: "body_color", label: "Knob Color", type: "color", defaultValue: "#8338ec" },
-      { name: "glow", label: "Glow Ring", type: "toggle", defaultValue: true },
+      { name: "body_color", label: "Knob Color", type: "color", defaultValue: "#A3B18A" },
+      { name: "glow", label: "Warm Ring", type: "toggle", defaultValue: true },
     ],
   },
   {
@@ -101,7 +101,7 @@ export const products: Product[] = [
     image: "/placeholder.svg",
     description: "Low-poly geometric vase, perfect centerpiece.",
     editableNodes: [
-      { name: "body_color", label: "Vase Color", type: "color", defaultValue: "#06d6a0" },
+      { name: "body_color", label: "Vase Color", type: "color", defaultValue: "#DAD7CD" },
       { name: "label_text", label: "Inscription", type: "text", defaultValue: "" },
     ],
   },
@@ -114,8 +114,8 @@ export const products: Product[] = [
     image: "/placeholder.svg",
     description: "Intricate parametric lamp shade with light diffusion patterns.",
     editableNodes: [
-      { name: "body_color", label: "Color", type: "color", defaultValue: "#ffbe0b" },
-      { name: "glow", label: "Inner LED", type: "toggle", defaultValue: true },
+      { name: "body_color", label: "Color", type: "color", defaultValue: "#E9C46A" },
+      { name: "glow", label: "Inner Warmth", type: "toggle", defaultValue: true },
     ],
   },
 ];
