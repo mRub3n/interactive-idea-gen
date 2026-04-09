@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ShoppingCart, Layers, Home } from "lucide-react";
+import { ShoppingCart, Layers } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
